@@ -52,7 +52,7 @@ module Magnet
         title, first_name, initial, last_name = parse_name(attributes[:name].rstrip) if attributes[:name]
 
         card = new
-        card.allowed_services = hash_lookup(ALLOWED_SERVICES, position3)
+        card.allowed_services = position3
         card.authorization_processing = hash_lookup(AUTHORIZATION_PROCESSING, position2)
         card.discretionary_data = attributes[:discretionary_data]
         card.expiration_month = month
@@ -90,18 +90,6 @@ module Magnet
       end
     end
 
-    def atm_only?
-      allowed_services == :atm_only
-    end
-
-    def cash_only?
-      allowed_services == :cash_only
-    end
-
-    def goods_and_services_only?
-      allowed_services == :goods_and_services_only
-    end
-
     def integrated_circuit_card?
       technology == :integrated_circuit_card
     end
@@ -112,10 +100,6 @@ module Magnet
 
     def national?
       interchange == :national
-    end
-
-    def no_service_restrictions?
-      allowed_services = :no_restrictions
     end
 
     def pin_required?
