@@ -53,7 +53,7 @@ module Magnet
 
         card = new
         card.allowed_services = hash_lookup(ALLOWED_SERVICES, position3)
-        card.service_code = position3
+        card.service_code = attributes[:service_code].to_i
         card.authorization_processing = hash_lookup(AUTHORIZATION_PROCESSING, position2)
         card.discretionary_data = attributes[:discretionary_data]
         card.expiration_month = month
